@@ -1,0 +1,1 @@
+file<-read.csv("data/Respostas.csv",header=T)
