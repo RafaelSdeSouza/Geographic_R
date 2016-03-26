@@ -22,13 +22,13 @@ colnames(gdata) <- c("Age","Gender","Student","civil_2013")
 g1 <- ggplot(aes(x=civil_2013,fill=Age),data=gdata) +
   geom_bar() + facet_wrap(Gender ~ Student,scales="free_y") +
   theme_economist() + scale_fill_wsj()+
-  theme(legend.title = element_text(size=15),
+  theme(legend.background = element_rect(fill="white"),legend.key = element_rect(fill = "white"),plot.background = element_rect(fill = "white"),panel.grid.major = element_line(colour = "gray"),panel.background = element_rect(fill = "white"),legend.title = element_text(size=15),
         axis.title=element_text(size=15,face="bold"),
     text = element_text(size=12),axis.title.x=element_text(size=rel(1)))+
   xlab("Likert scale") + ylab("Number of responses")+
   ggtitle("Civic and Political Rights Concerns")
   
   
-pdf("Civil.pdf",height = 12,width = 15)
+pdf("Civil3.pdf",height = 12,width = 15)
 g1
 dev.off()
