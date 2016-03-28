@@ -17,18 +17,68 @@ file[,5]<- revalue(file[,5],c("Não" = "Non-Student","Sim" = "Student"))
 
 
 
-gdata<-file[,c(3,4,5,17)]
-colnames(gdata) <- c("Age","Gender","Student","civil_2013")
-g1 <- ggplot(aes(x=civil_2013,fill=Age),data=gdata) +
+gdata<-file[,c(3,4,5,8,23,24,31)]
+colnames(gdata) <- c("Age","Gender","Student","Q1","Q2","Q3","Q4")
+
+gdata$Q1<-as.factor(gdata$Q1)
+gdata$Q2<-as.factor(gdata$Q2)
+gdata$Q3<-as.factor(gdata$Q3)
+gdata$Q4<-as.factor(gdata$Q4)
+Q1 <- ggplot(aes(x=Q1,fill=Age),data=gdata) +
   geom_bar() + facet_wrap(Gender ~ Student,scales="free_y") +
   theme_economist() + scale_fill_wsj()+
   theme(legend.background = element_rect(fill="white"),legend.key = element_rect(fill = "white"),plot.background = element_rect(fill = "white"),panel.grid.major = element_line(colour = "gray"),panel.background = element_rect(fill = "white"),legend.title = element_text(size=15),
         axis.title=element_text(size=15,face="bold"),
     text = element_text(size=12),axis.title.x=element_text(size=rel(1)))+
   xlab("Likert scale") + ylab("Number of responses")+
-  ggtitle("Civic and Political Rights Concerns")
+  ggtitle("Interested in Politics")
   
   
-pdf("Civil3.pdf",height = 12,width = 15)
-g1
+pdf("Q1.pdf",height = 12,width = 15)
+Q1
+dev.off()
+
+
+Q2 <- ggplot(aes(x=Q2,fill=Age),data=gdata) +
+  geom_bar() + facet_wrap(Gender ~ Student,scales="free_y") +
+  theme_economist() + scale_fill_wsj()+
+  theme(legend.background = element_rect(fill="white"),legend.key = element_rect(fill = "white"),plot.background = element_rect(fill = "white"),panel.grid.major = element_line(colour = "gray"),panel.background = element_rect(fill = "white"),legend.title = element_text(size=15),
+        axis.title=element_text(size=15,face="bold"),
+        text = element_text(size=12),axis.title.x=element_text(size=rel(1)))+
+  xlab("Likert scale") + ylab("Number of responses")+
+  ggtitle("Shared Opinion by Pressing the Like Button")
+
+
+pdf("Q2.pdf",height = 12,width = 15)
+Q2
+dev.off()
+
+
+Q3 <- ggplot(aes(x=Q3,fill=Age),data=gdata) +
+  geom_bar() + facet_wrap(Gender ~ Student,scales="free_y") +
+  theme_economist() + scale_fill_wsj()+
+  theme(legend.background = element_rect(fill="white"),legend.key = element_rect(fill = "white"),plot.background = element_rect(fill = "white"),panel.grid.major = element_line(colour = "gray"),panel.background = element_rect(fill = "white"),legend.title = element_text(size=15),
+        axis.title=element_text(size=15,face="bold"),
+        text = element_text(size=12),axis.title.x=element_text(size=rel(1)))+
+  xlab("Likert scale") + ylab("Number of responses")+
+  ggtitle("Shared Political Content on SNS")
+
+
+pdf("Q3.pdf",height = 12,width = 15)
+Q3
+dev.off()
+
+
+Q4 <- ggplot(aes(x=Q4,fill=Age),data=gdata) +
+  geom_bar() + facet_wrap(Gender ~ Student,scales="free_y") +
+  theme_economist() + scale_fill_wsj()+
+  theme(legend.background = element_rect(fill="white"),legend.key = element_rect(fill = "white"),plot.background = element_rect(fill = "white"),panel.grid.major = element_line(colour = "gray"),panel.background = element_rect(fill = "white"),legend.title = element_text(size=15),
+        axis.title=element_text(size=15,face="bold"),
+        text = element_text(size=12),axis.title.x=element_text(size=rel(1)))+
+  xlab("Likert scale") + ylab("Number of responses")+
+  ggtitle("Attended to a Protest or Similar Event")
+
+
+pdf("Q4.pdf",height = 12,width = 15)
+Q4
 dev.off()
